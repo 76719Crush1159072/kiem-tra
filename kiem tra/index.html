@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tính giai thừa</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
+<title>Kiểm tra tam giác</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
+<title>Đăng ký thông tin</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Tính giai thừa của một số tự nhiên</h2>
+    <label for="numberInput">Nhập số tự nhiên:</label>
+    <input type="number" id="numberInput">
+    <button onclick="tinhGiaiThua()">Tính giai thừa</button>
+    <div id="result"></div>
+</div>
+
+<div class="container">
+    <h2>Kiểm tra tam giác</h2>
+    <label for="sideA">Độ dài cạnh a:</label>
+    <input type="number" id="sideA">
+    <label for="sideB">Độ dài cạnh b:</label>
+    <input type="number" id="sideB">
+    <label for="sideC">Độ dài cạnh c:</label>
+    <input type="number" id="sideC">
+    <button onclick="kiemTraTamGiac()">Kiểm tra</button>
+    <div id="result"></div>
+</div>
+
+<div class="container">
+    <h2>Đăng ký thông tin</h2>
+    <label for="name">Tên:</label>
+    <input type="text" id="name">
+    <label for="age">Tuổi:</label>
+    <input type="number" id="age">
+    <label for="email">Email:</label>
+    <input type="email" id="email">
+    <button onclick="luuThongTin()">Đăng ký</button>
+    <div id="error" style="color: red;"></div>
+</div>
+
+<script>
+    function tinhGiaiThua() {
+        let numberInput = document.getElementById("numberInput").value;
+        let number = parseInt(numberInput);
+        let resultElement = document.getElementById("result");
+
+        if (isNaN(number) || number < 0) {
+            resultElement.innerText = "Vui lòng nhập một số tự nhiên không âm.";
+        } else {
+            let giaiThua = 1;
+            for (let i = 1; i <= number; i++) {
+                giaiThua *= i;
+            }
+            resultElement.innerText = "Giai thừa của " + number + " là: " + giaiThua;
+        }
+    }
+
+    function kiemTraTamGiac() {
+    let sideA = parseFloat(document.getElementById("sideA").value);
+    let sideB = parseFloat(document.getElementById("sideB").value);
+    let sideC = parseFloat(document.getElementById("sideC").value);
+
+    if (isNaN(sideA) || isNaN(sideB) || isNaN(sideC) || sideA <= 0 || sideB <= 0 || sideC <= 0) {
+        document.getElementById("result").innerText = "Không thể tạo thành một tam giác.";
+    } else {
+        if (sideA + sideB > sideC && sideA + sideC > sideB && sideB + sideC > sideA) {
+            if (sideA === sideB && sideB === sideC) {
+                document.getElementById("result").innerText = "Tam giác đều.";
+            } else if (sideA === sideB || sideA === sideC || sideB === sideC) {
+                document.getElementById("result").innerText = "Tam giác cân.";
+            } else {
+                document.getElementById("result").innerText = "Tam giác bình thường.";
+            }
+        } else {
+            document.getElementById("result").innerText = "Không thể tạo thành một tam giác.";
+        }
+    }
+}
+function luuThongTin() {
+    let name = document.getElementById("name").value.trim();
+    let age = document.getElementById("age").value.trim();
+    let email = document.getElementById("email").value.trim();
+
+    if (name === "" || age === "" || email === "") {
+        document.getElementById("error").innerText = "Vui lòng nhập đầy đủ thông tin.";
+        return;
+    }
+
+    let userInfo = {
+        name: name,
+        age: age,
+        email: email
+    };
+
+    // Lưu thông tin vào LocalStorage
+    localStorage.setItem("userInfo", JSON.stringify(userInfo));
+
+    // Chuyển đến trang show.html sau khi đăng ký thành công
+    window.location.href = "show.html";
+}
+</script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thông tin đăng ký</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Thông tin đăng ký</h2>
+    <div id="userInfo"></div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Lấy thông tin từ LocalStorage
+    let userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
+    if (userInfo) {
+        let userInfoHTML = "<p><strong>Tên:</strong> " + userInfo.name + "</p>";
+        userInfoHTML += "<p><strong>Tuổi:</strong> " + userInfo.age + "</p>";
+        userInfoHTML += "<p><strong>Email:</strong> " + userInfo.email + "</p>";
+        document.getElementById("userInfo").innerHTML = userInfoHTML;
+    } else {
+        document.getElementById("userInfo").innerText = "Không có thông tin đăng ký.";
+    }
+});
+</script>
+
+</body>
+</html>
